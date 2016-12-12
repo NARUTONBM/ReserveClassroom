@@ -9,7 +9,7 @@ script:
   - ./gradlew assembleRelease
 deploy:
   provider: releases
-  api_key: ReserveClassroom
+  api_key:
     secure: a79e279680dc81cdccc900c10947fbf3c32c1d24
   file: App/build/outputs/apk/app-release.apk
   skip_cleanup: true
