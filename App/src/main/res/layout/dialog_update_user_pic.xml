@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_update_pic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="修改头像"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/bt_camera_upload"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_dialog_tv_bg"
+        android:padding="10dp"
+        android:text="拍照上传"
+        android:textSize="24sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999"/>
+
+    <Button
+        android:id="@+id/bt_album_upload"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_dialog_tv_bg"
+        android:padding="10dp"
+        android:text="相册上传"
+        android:textSize="24sp"/>
+</LinearLayout>
