@@ -62,9 +62,10 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 	 */
 	private void initData() {
 
+		//获取数据库连接，并获取数据
 		AllRoomDao allRoomDao = AllRoomDao.getInstance(mContext);
 		mGroup = allRoomDao.getGroup();
-
+		//创建数据适配器
 		final MyAdapter mAdapter = new MyAdapter();
 		elv_choose_room.setAdapter(mAdapter);
 		// elv孩子条目的点击事件

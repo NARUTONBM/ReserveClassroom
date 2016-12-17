@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	private AVUser currentUser = AVUser.getCurrentUser();
 	private TextView tv_mainpage_title;
 	private ListView lv_history;
+	private long exitTime = 0;// 创建一个记录退出时间的变量
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -380,11 +382,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	}
 
 	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		// 重写返回键的点击事件
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+
+				// 间隔时间>2s，提示用户再次点击
+				ToastUtil.showShort(mContext, "再按一次退出应用!");
+				exitTime = System.currentTimeMillis();
+			} else {
+
+				// 否则，退出应用
+				finish();
+				System.exit(0);
+			}
+
+			return true;
+		}
+
+		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
 	protected void onResume() {
 
 		super.onResume();
 
-		AnimationUtils.RotateAnim(fab_add_reserve,0);
+		// 将AnimationUtils的计数器置为0，避免下次进入点击加号时无法进入教室选择界面
+		AnimationUtils.runningAnim = 0;
+		// 根据用户登陆与否，展示不同的内容
 		if (isLogin()) {
 
 			// 已登录，拿到当前实时的用户信息，给头控件设置回显
