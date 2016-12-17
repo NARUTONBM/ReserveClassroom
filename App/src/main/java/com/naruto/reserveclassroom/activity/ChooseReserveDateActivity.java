@@ -414,6 +414,8 @@ public class ChooseReserveDateActivity extends AppCompatActivity {
 							intent.putIntegerArrayListExtra("avaiTime", wholeDayTSList);
 							// 启动跳转
 							startActivity(intent);
+
+							finish();
 						}
 					});
 				} else {

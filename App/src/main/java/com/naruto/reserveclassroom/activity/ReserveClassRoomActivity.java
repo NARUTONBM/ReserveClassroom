@@ -82,6 +82,8 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 				System.out.println(parent.getChildCount());
 				startActivity(intent);
 
+				finish();
+
 				return true;
 			}
 		});

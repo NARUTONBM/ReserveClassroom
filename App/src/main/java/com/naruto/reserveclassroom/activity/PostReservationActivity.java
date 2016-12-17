@@ -380,6 +380,8 @@ public class PostReservationActivity extends AppCompatActivity {
 							System.out.println("update successfully!");
 							Intent intent = new Intent(mContext, MainActivity.class);
 							startActivity(intent);
+
+							finish();
 						} else {
 
 							System.out.println("update failed!");

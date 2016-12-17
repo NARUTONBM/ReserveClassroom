@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
 import com.naruto.reserveclassroom.R;
@@ -381,28 +382,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		tv_mainpage_title.setText("请在登陆后使用预约相关功能！");
 	}
 
+	//再按一次退出程序
+	//捕捉返回事件按钮
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	public boolean dispatchKeyEvent(KeyEvent event) {
 
-		// 重写返回键的点击事件
-		if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
 
-			if ((System.currentTimeMillis() - exitTime) > 2000) {
+			if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
 
-				// 间隔时间>2s，提示用户再次点击
-				ToastUtil.showShort(mContext, "再按一次退出应用!");
-				exitTime = System.currentTimeMillis();
-			} else {
-
-				// 否则，退出应用
-				finish();
-				System.exit(0);
+				this.exitApp();
 			}
 
 			return true;
 		}
 
-		return super.onKeyDown(keyCode, event);
+		return super.dispatchKeyEvent(event);
+	}
+
+	//退出程序
+	private void exitApp() {
+
+		// 判断2次点击事件时间
+		if ((System.currentTimeMillis() - exitTime) > 2000) {
+
+			Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+			exitTime = System.currentTimeMillis();
+		} else {
+			
+			finish();
+		}
 	}
 
 	@Override
