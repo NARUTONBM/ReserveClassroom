@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -125,7 +124,6 @@ public class ChooseReserveDateActivity extends AppCompatActivity {
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		View view = inflater.inflate(R.layout.linearlayout_date_item, null);
 		view.setLayoutParams(lp);
-		ImageButton ib_item_ensure = (ImageButton) view.findViewById(R.id.ib_item_ensure);
 		TextView tv_item_time = (TextView) view.findViewById(R.id.tv_item_time);
 		TextView tv_item_date = (TextView) view.findViewById(R.id.tv_item_date);
 		tv_item_date.setText(dateStr);
@@ -179,7 +177,7 @@ public class ChooseReserveDateActivity extends AppCompatActivity {
 			wholeDayTSList.add(72000);
 			wholeDayTSList.add(72000);
 			wholeDayTSList.add(79200);
-			DealForbiddenItem(wholeDayTimeList, wholeDayTSList, tv_item_time, timeStamp, ib_item_ensure, dateStr);
+			DealForbiddenItem(wholeDayTimeList, wholeDayTSList, tv_item_time, timeStamp, view, dateStr);
 		} else {
 
 			// 准备一个数组，放置全天时段
@@ -198,7 +196,7 @@ public class ChooseReserveDateActivity extends AppCompatActivity {
 			wholeDayTSList.add(72000);
 			wholeDayTSList.add(72000);
 			wholeDayTSList.add(79200);
-			DealForbiddenItem(wholeDayTimeList, wholeDayTSList, tv_item_time, timeStamp, ib_item_ensure, dateStr);
+			DealForbiddenItem(wholeDayTimeList, wholeDayTSList, tv_item_time, timeStamp, view, dateStr);
 		}
 
 		ll_date_parent.addView(view);
@@ -276,13 +274,12 @@ public class ChooseReserveDateActivity extends AppCompatActivity {
 	 *            条目对象
 	 * @param timeStamp
 	 *            条目日期的时间戳
-	 * @param ib_item_ensure
+	 * @param view
 	 *            条目对应的ib
 	 * @param dateStr
-	 *            条目的字符型Java时间
 	 */
 	private void DealForbiddenItem(final List<String> wholeDayTimeList, final ArrayList<Integer> wholeDayTSList, final TextView tv_item_time,
-					final String timeStamp, final ImageButton ib_item_ensure, final String dateStr) {
+					final String timeStamp, final View view, final String dateStr) {
 
 		QueryForbiddenTime(mClassroom, new DataCallback() {
 
@@ -401,7 +398,7 @@ public class ChooseReserveDateActivity extends AppCompatActivity {
 					}
 					final String avaiTime = builder.toString();
 					tv_item_time.setText(avaiTime);
-					ib_item_ensure.setOnClickListener(new View.OnClickListener() {
+					view.setOnClickListener(new View.OnClickListener() {
 
 						@Override
 						public void onClick(View v) {
@@ -414,14 +411,12 @@ public class ChooseReserveDateActivity extends AppCompatActivity {
 							intent.putIntegerArrayListExtra("avaiTime", wholeDayTSList);
 							// 启动跳转
 							startActivity(intent);
-
-							finish();
 						}
 					});
 				} else {
 
 					tv_item_time.setText("该日期无可借时段");
-					ib_item_ensure.setOnClickListener(new View.OnClickListener() {
+					view.setOnClickListener(new View.OnClickListener() {
 
 						@Override
 						public void onClick(View v) {

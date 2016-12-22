@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:padding="5dp"
-              android:gravity="center_vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:layout_marginLeft="16dp"
+              android:background="?android:attr/selectableItemBackground"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingBottom="8dp"
+              android:paddingTop="8dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_roomNo"
-            android:text="这是教室号"
-            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="这是教室号"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tv_people_avai"
-            android:text="这是教室座位数"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text="这是教室座位数"
+            android:textSize="16sp"/>
     </LinearLayout>
 </LinearLayout>

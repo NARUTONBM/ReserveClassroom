@@ -62,18 +62,17 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 	 */
 	private void initData() {
 
-		//获取数据库连接，并获取数据
+		// 获取数据库连接，并获取数据
 		AllRoomDao allRoomDao = AllRoomDao.getInstance(mContext);
 		mGroup = allRoomDao.getGroup();
-		//创建数据适配器
+		// 创建数据适配器
 		final MyAdapter mAdapter = new MyAdapter();
 		elv_choose_room.setAdapter(mAdapter);
 		// elv孩子条目的点击事件
 		elv_choose_room.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
 			@Override
-			public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
-							int childPosition, long id) {
+			public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
 				// System.out.println("孩子节点被点击了！");
 				Child childBody = mAdapter.getChild(groupPosition, childPosition);
@@ -81,8 +80,6 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 				intent.putExtra("roomNo", childBody.roomNo);
 				System.out.println(parent.getChildCount());
 				startActivity(intent);
-
-				finish();
 
 				return true;
 			}
@@ -133,13 +130,12 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 		}
 
 		@Override
-		public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
-						ViewGroup parent) {
+		public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
 			TextView textView = new TextView(mContext);
-			textView.setText(String.format("                       %s",
-							getGroup(groupPosition).buildingNo));
+			textView.setText(String.format(getGroup(groupPosition).buildingNo));
 			textView.setTextSize(24);
+			textView.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
 			textView.setPadding(10, 10, 10, 10);
 			textView.setTextColor(Color.GREEN);
 
@@ -147,8 +143,7 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 		}
 
 		@Override
-		public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
-						View convertView, ViewGroup parent) {
+		public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
 			// 复用convertview
 			ViewHolder holder;
