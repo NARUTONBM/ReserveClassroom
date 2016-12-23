@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 	CheckBox cb_remember_name_psw;
 	private Context mContext;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -84,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
 		if (!TestNetworkStateUtil.isNetworkConnected(mContext)) {
 
-			ToastUtil.showShort(mContext,"当前无网络连接,将无法实现登陆功能！");
+			ToastUtil.showShort(mContext, "当前无网络连接,将无法实现登陆功能！");
 		}
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -140,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 
 				startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
 				finish();
-			}else {
+			} else {
 
 				ToastUtil.showShort(mContext, "无网络状态下无法进行注册！");
 			}
@@ -166,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
 		String userInputStr = actv_username.getText().toString().trim();
 		String password = et_password.getText().toString().trim();
 		// 设置手机号的匹配正则表达式
-		String regularExpression = "^1(3|4|5|7|8)\\d{9}$";
+		String regularExpression = "^1[0-9]{10}$";
 		// 判断用户输入的是用户名还是手机号
 		if (userInputStr.matches(regularExpression)) {
 
@@ -180,7 +179,6 @@ public class LoginActivity extends AppCompatActivity {
 
 		boolean cancel = false;
 		View focusView = null;
-
 
 		if (TextUtils.isEmpty(password)) {
 
@@ -243,23 +241,22 @@ public class LoginActivity extends AppCompatActivity {
 			} else if (phone != null) {
 
 				// 手机号登录
-				AVUser.loginByMobilePhoneNumberInBackground(phone, password,
-								new LogInCallback<AVUser>() {
+				AVUser.loginByMobilePhoneNumberInBackground(phone, password, new LogInCallback<AVUser>() {
 
-									@Override
-									public void done(AVUser avUser, AVException e) {
+					@Override
+					public void done(AVUser avUser, AVException e) {
 
-										if (e == null) {
+						if (e == null) {
 
-											finish();
-											startActivity(new Intent(mContext, MainActivity.class));
-										} else {
+							finish();
+							startActivity(new Intent(mContext, MainActivity.class));
+						} else {
 
-											showProgress(false);
-											ToastUtil.showShort(mContext, e.getMessage());
-										}
-									}
-								});
+							showProgress(false);
+							ToastUtil.showShort(mContext, e.getMessage());
+						}
+					}
+				});
 			}
 		}
 	}
@@ -287,29 +284,28 @@ public class LoginActivity extends AppCompatActivity {
 			int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
 			sv_login.setVisibility(show ? View.GONE : View.VISIBLE);
-			sv_login.animate().setDuration(shortAnimTime).alpha(show ? 0 : 1)
-							.setListener(new AnimatorListenerAdapter() {
+			sv_login.animate().setDuration(shortAnimTime).alpha(show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
 
-								@Override
-								public void onAnimationEnd(Animator animation) {
+				@Override
+				public void onAnimationEnd(Animator animation) {
 
-									sv_login.setVisibility(show ? View.GONE : View.VISIBLE);
-								}
-							});
+					sv_login.setVisibility(show ? View.GONE : View.VISIBLE);
+				}
+			});
 
 			pb_login.setVisibility(show ? View.VISIBLE : View.GONE);
-			pb_login.animate().setDuration(shortAnimTime).alpha(show ? 1 : 0)
-							.setListener(new AnimatorListenerAdapter() {
+			pb_login.animate().setDuration(shortAnimTime).alpha(show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
 
-								@Override
-								public void onAnimationEnd(Animator animation) {
+				@Override
+				public void onAnimationEnd(Animator animation) {
 
-									pb_login.setVisibility(show ? View.VISIBLE : View.GONE);
-								}
-							});
+					pb_login.setVisibility(show ? View.VISIBLE : View.GONE);
+				}
+			});
 		} else {
 
-			// The ViewPropertyAnimator APIs are not available, so simply showShort
+			// The ViewPropertyAnimator APIs are not available, so simply
+			// showShort
 			// and hide the relevant UI components.
 			pb_login.setVisibility(show ? View.VISIBLE : View.GONE);
 			sv_login.setVisibility(show ? View.GONE : View.VISIBLE);

@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	private Context mContext;
 	private AVUser currentUser = AVUser.getCurrentUser();
 	private TextView tv_mainpage_title;
-	private ListView lv_history;
 	private long exitTime = 0;// 创建一个记录退出时间的变量
 
 	@Override
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		}
 		// 找到主页面的两个控件
 		tv_mainpage_title = (TextView) findViewById(R.id.tv_mainpage_title);
-		lv_history = (ListView) findViewById(R.id.lv_history);
+		ListView lv_history = (ListView) findViewById(R.id.lv_history);
 		if (!isLogin() || (!isLogin() && !TestNetworkStateUtil.isNetworkConnected(mContext))) {
 
 			tv_mainpage_title.setText("请在登陆后使用预约相关功能！");
@@ -341,14 +340,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 			break;
 
-		case R.id.nav_slideshow:
-
-			break;
-
-		case R.id.nav_manage:
-
-			break;
-
 		case R.id.nav_share:
 
 			break;
@@ -430,6 +421,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 			String phoneNumber = currentUserInfo.get(0).getMobilePhoneNumber();
 			tv_username.setText(username);
 			tv_userphone.setText(phoneNumber);
+			tv_mainpage_title.setText("教室借用记录");
 		} else {
 
 			// 未登陆，提示用户登录

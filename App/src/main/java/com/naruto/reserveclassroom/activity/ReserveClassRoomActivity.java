@@ -5,7 +5,6 @@ package com.naruto.reserveclassroom.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -145,7 +144,7 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 				textView.setGravity(TEXT_ALIGNMENT_GRAVITY);
 			}
 			textView.setPadding(10, 10, 10, 10);
-			textView.setTextColor(Color.GREEN);
+			textView.setTextColor(getResources().getColor(R.color.blue_text));
 
 			return textView;
 		}
