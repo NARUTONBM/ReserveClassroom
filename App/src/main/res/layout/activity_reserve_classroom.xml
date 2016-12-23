@@ -5,7 +5,6 @@
               android:orientation="vertical">
 
     <ExpandableListView
-        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/elv_choose_room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

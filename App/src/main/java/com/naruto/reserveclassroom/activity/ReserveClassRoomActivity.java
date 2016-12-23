@@ -6,6 +6,7 @@ package com.naruto.reserveclassroom.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,10 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static android.support.design.R.drawable.abc_action_bar_item_background_material;
+import static android.view.View.TEXT_ALIGNMENT_GRAVITY;
+import static java.lang.String.format;
 
 public class ReserveClassRoomActivity extends AppCompatActivity {
 
@@ -133,9 +138,12 @@ public class ReserveClassRoomActivity extends AppCompatActivity {
 		public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
 			TextView textView = new TextView(mContext);
-			textView.setText(String.format(getGroup(groupPosition).buildingNo));
+			textView.setText(format(getGroup(groupPosition).buildingNo));
 			textView.setTextSize(24);
-			textView.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+			textView.setBackgroundResource(abc_action_bar_item_background_material);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+				textView.setGravity(TEXT_ALIGNMENT_GRAVITY);
+			}
 			textView.setPadding(10, 10, 10, 10);
 			textView.setTextColor(Color.GREEN);
 
