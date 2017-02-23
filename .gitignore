@@ -40,7 +40,7 @@ captures/
 *.jks
 
 # Android Studio
-.idea
+.idea/
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
 .gradle
 build/
